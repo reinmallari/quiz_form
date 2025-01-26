@@ -21,6 +21,7 @@
         </header>
 
         <section id="analyzer" class="content-section">
+					<button id="generate_questions" class="btn btn-primary">Generate Questions</button>
           	@include ('pages/quiz_form')
         </section>
 

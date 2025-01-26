@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trivia_questions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+      Schema::create('trivia_questions', function (Blueprint $table) {
+        $table->id(); // Primary key
+        $table->string('category'); // Question category
+        $table->string('difficulty'); // Difficulty level
+        $table->string('type'); // Type of question (e.g., multiple choice)
+        $table->text('question'); // The trivia question
+        $table->string('correct_answer'); // The correct answer
+        $table->json('incorrect_answers'); // The incorrect answers as a JSON array
+        $table->timestamps(); // Created at and Updated at timestamps
+      });
     }
 
     /**

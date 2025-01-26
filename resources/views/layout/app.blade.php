@@ -15,6 +15,7 @@
 		@yield ('content')
 		<script src="{{ URL::asset('assets/scripts/jquery-3.5.1.min.js') }}" charset="utf-8"></script>
 		<script src="{{ URL::asset('assets/scripts/jquery-ui.min.js') }}" charset="utf-8"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 		@yield ('script')
 	</body>
 </html>
