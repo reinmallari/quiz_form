@@ -8,10 +8,33 @@ use Illuminate\Support\Facades\Http;
 class QuizController extends Controller
 {
 
-  // Method to fetch trivia questions from the database
-  public function get()
+  public function index()
   {
-    $response = Http::get("https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple");
+      $response = Http::get('https://opentdb.com/api_category.php');
+      if ($response->ok()) {
+          $categories = $response->json()['trivia_categories'];
+      } else {
+          $categories = [];
+      }
+      return view('pages/quiz', ['categories' => $categories]);
+  }
+  // Method to fetch trivia questions from the database
+  public function get($num_of_questions, $difficulty_type, $question_type, $category)
+  {
+        // Base URL
+    $api_url = "https://opentdb.com/api.php?amount={$num_of_questions}&category={$category}";
+
+    // Conditionally add parameters if they're not 'any'
+    if ($difficulty_type !== 'any') {
+        $api_url .= "&difficulty={$difficulty_type}";
+    }
+
+    if ($question_type !== 'any') {
+        $api_url .= "&type={$question_type}";
+    }
+
+    $response = Http::get($api_url);
+
     if ($response->ok()) {
        $questions = $response->json()['results'];
        foreach ($questions as $question) {

@@ -7,8 +7,14 @@ $(document).ready(function() {
     $('#quiz_form').on('submit', function(event) {
         event.preventDefault();
         // Fetch trivia questions when the page loads
+
+        var number_of_questions = $('#number_of_questions').val();
+        var difficulty_type = $('#difficulty_type').val();
+        var question_type = $('#question_type').val();
+        var category = $('#category').val();
+        var url = `/quiz/get/${number_of_questions}/${difficulty_type}/${question_type}/${category}`;
         $.ajax({
-            url: '/quiz/get', // API endpoint to get trivia questions
+            url: url, // API endpoint to get trivia questions
             method: 'GET',
             success: function(response) {
                 console.log(response)
